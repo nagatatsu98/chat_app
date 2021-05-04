@@ -1,0 +1,17 @@
+<div class="text-center">
+  <h1>Sign up</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @user, local: true) do |f| %>
+      
+      <%= render 'users/user_form_control', f: f %>
+
+      <%= f.submit '作成する', class: 'btn btn-outline-dark btn-sm' %>
+    <% end %>
+    
+    <%= link_to 'ログインへ', login_path %>
+  </div>
+</div>

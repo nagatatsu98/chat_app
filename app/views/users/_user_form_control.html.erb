@@ -1,0 +1,30 @@
+
+<div class="form-group">
+  <%= f.label :name, '名前*' %>
+  <%= f.text_field :name, class: 'form-control require' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :email, 'email*' %>
+  <%= f.email_field :email, class: 'form-control require' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :password, 'パスワード*' %>
+  <%= f.password_field :password, class: 'form-control require' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :password_confirmation, 'パスワードの確認*' %>
+  <%= f.password_field :password_confirmation, class: 'form-control require' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :profile, 'プロフィール' %>
+  <%= f.text_area :profile, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :image, 'プロフィール画像' %>
+  <%= f.file_field :image, class: 'form-control-file' %>
+</div>

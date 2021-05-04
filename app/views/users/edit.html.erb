@@ -1,0 +1,15 @@
+<div class="text-center">
+  <h1>ユーザ情報の編集</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @user, local: true) do |f| %>
+      
+      <%= render 'users/user_form_control', f: f %>
+
+      <%= f.submit '更新する', class: 'btn btn-outline-dark btn-sm' %>
+    <% end %>
+  </div>
+</div>

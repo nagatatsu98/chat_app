@@ -1,0 +1,17 @@
+<div class="text-center">
+  <h1>create group</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @group, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: @group %>
+      
+      <%= render 'groups/forms', f: f %>
+      
+      <%= f.submit '作成する', class: 'btn btn-outline-dark btn-sm mt-3 mr-3' %>
+      <%= link_to 'キャンセル', user_path(current_user), class: 'btn btn-outline-secondary btn-sm text-black-50 mt-3' %>
+    <% end %>
+  </div>
+</div>

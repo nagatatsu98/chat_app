@@ -1,0 +1,20 @@
+<% if @group.background_image.url %> <%# TODO %>
+  <%= image_tag @group.background_image.url, alt: 'background icon', class: 'mw-100' %>
+<% end %>
+
+
+
+<div class="d-flex">
+  <% if @group.image.url %> <%# TODO %>
+    <%= image_tag @group.image.url, alt: 'background icon', class: 'mw-100' %>
+  <% end %>
+  <div class="h2">
+    <%= @group.name %>
+  </div>
+  <% if current_user == @group.user %>
+    <%= button_to '編集する', action: :edit, method: :get %>
+    <%= button_to '削除する', method: :delete %>
+  <% else %>
+    <%= button_to '参加する', action: :show, method: :get %>
+  <% end %>
+</div>

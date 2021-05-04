@@ -1,0 +1,29 @@
+<div class="form-group">
+  <%= f.label :name, 'グループ名*' %>
+  <%= f.text_field :name, class: 'form-control require' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :description, 'グループの説明' %>
+  <%= f.text_area :description, class: 'form-control', rows: 1, placeholder: 'グループのルールやメッセージをメモしよう' %>
+</div>
+
+<div class="form-check mt-4">
+  <%= f.radio_button :private, false, class: 'form-check-input', checked: true %>
+  <%= f.label :private, '公開' %>
+</div>
+
+<div class="form-check">
+  <%= f.radio_button :private, true, class: 'form-check-input' %>
+  <%= f.label :private, 'プライベート' %>
+</div>
+
+<div class="form-group mt-3">
+  <%= f.label :image, 'アイコン' %>
+  <%= f.file_field :image, class: 'form-control-file' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :background_image, '背景画像' %>
+  <%= f.file_field :background_image, class: 'form-control-file' %>
+</div>

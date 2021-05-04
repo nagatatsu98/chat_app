@@ -1,4 +1,4 @@
-<%= render 'toppages/search_bar', url: root_path %>
+<%= render 'toppages/search_bar', url: users_path %>
 <div class="content mt-4">
   <div class="content_nav btn-group">
     <a href="/" class="btn btn-secondary <%= 'active' if current_page?('/') %>" role="button" aria-pressed="true">グループ</a>
@@ -6,7 +6,7 @@
   </div>
   
   <div class="content-items mt-3">
-    <%= render 'groups/groups', groups: @groups %>
+    <%= render 'users/users', users: @users %>
   </div>
 </div>
   
