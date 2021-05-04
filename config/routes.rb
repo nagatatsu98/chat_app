@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   
   resources :groups, param: :token, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :subscribers, only: [:create, :destroy]
+  resources :messages, only: [:create]
 end

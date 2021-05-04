@@ -5,6 +5,7 @@ class GroupsController < ApplicationController
   
   def show
     @group = Group.find_by(token: params[:token])
+    @messages = @group.messages.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def new

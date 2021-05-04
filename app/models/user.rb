@@ -12,4 +12,6 @@ class User < ApplicationRecord
   has_many :groups
   has_many :subscribers
   has_many :subscribed_groups, through: :subscribers, source: :group
+  
+  has_many :messages
 end

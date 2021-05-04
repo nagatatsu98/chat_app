@@ -10,6 +10,8 @@ class Group < ApplicationRecord
   
   has_many :subscribers
   has_many :members, through: :subscribers, source: :user
+  
+  has_many :messages
     
   def add_subscriber(user)
     self.subscribers.find_or_create_by(user_id: user.id)

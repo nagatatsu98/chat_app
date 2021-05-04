@@ -1,3 +1,6 @@
+<% if @message %>
+  <%= render 'layouts/error_messages', model: @message %>
+<% end %>
 <div style="height: 100px; background-color: rgba(255,0,0,0.1);">
   <%= image_tag @group.background_image.url, alt: 'background img', class: 'mw-100 mh-100' %>
 </div>
@@ -7,7 +10,7 @@
     <%= image_tag @group.image.url, alt: 'background icon', class: 'mw-100 mh-100', size: '40x40' %>
     <%= @group.name %>
   </h2>
-  <div class="button_items ml-auto">
+  <div class="ml-auto">
     <% if current_user == @group.user %>
       <%= link_to '編集する', edit_group_path, class: 'btn btn-outline-primary btn-lg' %>
       <%= link_to '削除する', group_path, method: :delete, class: 'btn btn-outline-primary btn-lg' %>
@@ -19,5 +22,32 @@
         <% end %>
       <% end %>
     <% end %>
+  </div>
+</div>
+<div class="mb-5">
+  <%= @group.description %>
+</div>
+<div class="pb-5">
+  <% if @messages %>
+    <% @messages.each do |message| %>
+      <div class="mb-3">
+        <%= image_tag message.user.image.url, alt: 'user icon', class: 'mw-100 mh-100', size: '40x40' %>
+        <%= message.content %>
+      </div>
+    <% end %>
+    <%= paginate @messages %>
+  <% end %>
+</div>
+<div class="fixed-bottom">
+  <div class="container">
+    <div class="border rounded">
+      <%= form_with(model: @group.messages.build, local: true) do |f| %>
+        <div class="d-flex">
+          <%= f.text_area :content, rows: 1, class: 'form-control border-0', style: 'resize: none' %>
+          <%= hidden_field_tag :group_token, @group.token %>
+          <%= f.submit '送信', class: 'btn btn-primary mr-2 my-1' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
