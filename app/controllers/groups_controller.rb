@@ -1,6 +1,8 @@
 require 'securerandom'
 
 class GroupsController < ApplicationController
+  before_action :require_user_logged_in, except: :show
+  
   def show
     @group = Group.find_by(token: params[:token])
   end
@@ -14,18 +16,27 @@ class GroupsController < ApplicationController
     @group.token = SecureRandom.uuid
     if @group.save
       flash[:success] = 'グループを作成しました。'
+      @group.add_subscriber(current_user)
       redirect_to user_path(current_user)
     else
       flash.now[:danger] = 'グループを作成できませんでした。'
       render :new
     end
-        
   end
 
   def edit
+    @group = current_user.groups.find_by(token: params[:token])
   end
 
   def update
+    @group = current_user.groups.find_by(token: params[:token])
+    if @group.update(group_params)
+      flash[:success] = 'グループ情報を更新しました。'
+      redirect_to user_path(current_user)
+    else
+      flash.now[:danger] = 'グループ情報を更新できませんでした。'
+      render :new
+    end
   end
 
   def destroy

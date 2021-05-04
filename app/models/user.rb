@@ -10,4 +10,6 @@ class User < ApplicationRecord
   mount_uploader :image, ImageUploader
   
   has_many :groups
+  has_many :subscribers
+  has_many :subscribed_groups, through: :subscribers, source: :group
 end

@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create, :edit, :update]
   
   resources :groups, param: :token, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :subscribers, only: [:create, :destroy]
 end

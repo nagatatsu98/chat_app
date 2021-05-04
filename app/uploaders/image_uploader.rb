@@ -20,7 +20,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   
     "user-alt-solid.svg"
     
-    #"/images/fallback/" + [version_name, "dice-solid.svg"].compact.join('_')
+    # "/images/fallback/" + [version_name, "dice-solid.svg"].compact.join('_')
   end
 
   # Process files as they are uploaded:
