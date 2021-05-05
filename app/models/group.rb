@@ -8,10 +8,10 @@ class Group < ApplicationRecord
   validates :description, length: { maximum: 6000 }
   validates :token, presence: true, uniqueness: true, length: { minimum: 36 }
   
-  has_many :subscribers
+  has_many :subscribers, dependent: :destroy
   has_many :members, through: :subscribers, source: :user
   
-  has_many :messages
+  has_many :messages, dependent: :destroy
     
   def add_subscriber(user)
     self.subscribers.find_or_create_by(user_id: user.id)

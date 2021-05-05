@@ -41,6 +41,10 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+    group = Group.find_by(token: params[:token])
+    group.destroy if group
+    flash[:success] = 'グループを削除しました。'
+    redirect_to root_url
   end
   
   private
