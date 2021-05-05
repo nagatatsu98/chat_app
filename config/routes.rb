@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   
   get 'signup', to: 'users#new'
-  resources :users, only: [:index, :show, :create, :edit, :update]
+  resources :users, only: [:index, :show, :create, :edit, :update] do
+    member do
+      get :password
+      patch :update_password
+    end
+  end
   
   resources :groups, param: :token, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :subscribers, only: [:create, :destroy]

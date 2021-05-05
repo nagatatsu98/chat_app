@@ -48,14 +48,30 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     else
       flash.now[:danger] = 'ユーザ情報の更新に失敗しました。'
-      render :new
+      render :edit
+    end
+  end
+  
+  def password
+    @user = User.find(params[:id])
+  end
+  
+  def update_password
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    if @user.save
+      flash[:success] = 'パスワードを更新しました。'
+      redirect_to user_path(current_user)
+    else
+      flash.now[:danger] = 'パスワードの更新に失敗しました。'
+      render :password
     end
   end
   
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :profile, :id, :image)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile, :id, :image)
   end
   
   def correct_user

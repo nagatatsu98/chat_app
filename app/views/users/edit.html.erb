@@ -5,7 +5,8 @@
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
 
-    <%= form_with(model: @user, local: true) do |f| %>
+    <%= form_with(model: @user, local: true, method: :patch) do |f| %>
+      <%= render 'layouts/error_messages', model: @user%>
       
       <%= render 'users/user_form_control', f: f %>
 
