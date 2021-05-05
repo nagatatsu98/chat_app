@@ -31,8 +31,11 @@
 <div class="pb-5">
   <% if @messages %>
     <% @messages.each do |message| %>
-      <div class="d-flex align-items-center mb-3 p-1">
-        <%= image_tag message.user.image.url, alt: 'user icon', size: '40x40', style: "object-fit: contain;" %>
+      <div class="d-flex align-items-center border-bottom mb-3 p-1">
+        <div>
+          <%= image_tag message.user.image.url, alt: 'user icon', size: '40x40', style: "object-fit: contain;" %>
+          <p><%= message.user.name %></p>
+        </div>
         <div class="pl-3">
           <%= message.content %>
         </div>
@@ -41,16 +44,15 @@
     <%= paginate @messages %>
   <% end %>
 </div>
-<div class="fixed-bottom">
+<div class="fixed-bottom pb-2">
   <div class="container">
-    <div class="border rounded">
-      <%= form_with(model: @group.messages.build, local: true) do |f| %>
-        <div class="d-flex">
-          <%= f.text_area :content, rows: 1, class: 'form-control border-0', style: 'resize: none' %>
-          <%= hidden_field_tag :group_token, @group.token %>
-          <%= f.submit '送信', class: 'btn btn-primary mr-2 my-1' %>
-        </div>
+    <% if @group.subscriber?(current_user) %>
+      <%= render 'groups/send_bar', group: @group %>
+    <% else %>
+      <%= form_with(model: @group.subscribers.build, local: true) do |f| %>
+        <%= hidden_field_tag :group_token, @group.token %>
+        <%= f.submit '参加する', class: 'btn btn-primary btn-lg btn-block' %>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </div>
