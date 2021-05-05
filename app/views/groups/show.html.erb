@@ -1,12 +1,13 @@
 <% if @message %>
   <%= render 'layouts/error_messages', model: @message %>
 <% end %>
-<div style="height: 100px; background-color: rgba(255,0,0,0.1);">
-  <%= image_tag @group.background_image.url, alt: 'background img', class: 'mw-100 mh-100' %>
+
+<div style="background-color: rgba(255,0,0,0.1);">
+  <%= image_tag @group.background_image.url, alt: 'background img', class: 'w-100', height: 100, style: "object-fit: cover;"  %>
 </div>
 
 <div class="d-flex align-items-center mt-3">
-  <%= image_tag @group.image.url, alt: 'background icon', class: 'mw-100 mh-100', size: '44x44' %>
+  <%= image_tag @group.image.url, alt: 'background image', size: '44x44', style: "object-fit: contain;"  %>
   <h2 class="mb-0 ml-2">
     <%= @group.name %>
   </h2>
@@ -31,7 +32,7 @@
   <% if @messages %>
     <% @messages.each do |message| %>
       <div class="d-flex align-items-center mb-3 p-1">
-        <%= image_tag message.user.image.url, alt: 'user icon', class: 'mw-100 mh-100', size: '40x40' %>
+        <%= image_tag message.user.image.url, alt: 'user icon', size: '40x40', style: "object-fit: contain;" %>
         <div class="pl-3">
           <%= message.content %>
         </div>

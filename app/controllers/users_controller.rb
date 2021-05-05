@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, except: [:index, :show, :new, :create]
   
   def index
     search_key = params[:q]
