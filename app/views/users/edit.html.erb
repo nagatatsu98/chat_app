@@ -8,9 +8,10 @@
     <%= form_with(model: @user, local: true, method: :patch) do |f| %>
       <%= render 'layouts/error_messages', model: @user%>
       
-      <%= render 'users/user_form_control', f: f %>
+      <%= render 'users/user_form_control', f: f, password_confirmation: false %>
 
-      <%= f.submit '更新する', class: 'btn btn-outline-dark btn-sm' %>
+      <%= f.submit '更新する', class: 'btn btn-outline-dark btn-sm mr-3' %>
+      <%= link_to 'キャンセル', :back, class: 'btn btn-outline-secondary btn-sm text-black-50' %>
     <% end %>
   </div>
 </div>

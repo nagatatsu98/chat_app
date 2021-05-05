@@ -14,10 +14,12 @@
   <%= f.password_field :password, class: 'form-control require' %>
 </div>
 
-<div class="form-group">
-  <%= f.label :password_confirmation, 'パスワードの確認*' %>
-  <%= f.password_field :password_confirmation, class: 'form-control require' %>
-</div>
+<% if password_confirmation %>
+  <div class="form-group">
+    <%= f.label :password_confirmation, 'パスワードの確認*' %>
+    <%= f.password_field :password_confirmation, class: 'form-control require' %>
+  </div>
+<% end %>
 
 <div class="form-group">
   <%= f.label :profile, 'プロフィール' %>

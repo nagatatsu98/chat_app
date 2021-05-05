@@ -37,13 +37,15 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    if @user.save
+    unless correct_password(params[:user][:password])
+      flash.now[:danger] = 'パスワードが違います。'
+      render :edit
+      return
+    end
+    if @user.update(user_params)
       flash[:success] = 'ユーザ情報を更新しました。'
       redirect_to user_path(current_user)
     else
@@ -53,13 +55,15 @@ class UsersController < ApplicationController
   end
   
   def password
-    @user = User.find(params[:id])
   end
   
   def update_password
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    if @user.save
+    unless correct_password(params[:user][:before_password])
+      flash.now[:danger] = 'パスワードが違います。'
+      render :password
+      return
+    end
+    if @user.update(user_password_params)
       flash[:success] = 'パスワードを更新しました。'
       redirect_to user_path(current_user)
     else
@@ -74,9 +78,18 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile, :id, :image)
   end
   
+  def user_password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
+  
   def correct_user
-    unless current_user == User.find_by(id: params[:id])
+    @user = User.find(params[:id])
+    unless current_user == @user
       redirect_to root_path
     end
+  end
+  
+  def correct_password(password)
+    current_user.authenticate(password)
   end
 end
