@@ -1,5 +1,5 @@
 <div class="row">
-  <aside class="col-2">
+  <aside class="col-md-2 text-center text-md-left">
     <div class="user_image">
       <%= image_tag @user.image.url, alt: 'user icon', class: 'mw-100', height: 200, style: "object-fit: contain;" %>
     </div>
@@ -12,7 +12,7 @@
       <p><%= link_to 'パスワードの変更', password_user_url(current_user) %></p>
     <% end %>
   </aside>
-  <div class="content col-10">
+  <div class="content col-md-10">
     <% if @user == current_user %>
       <div class="content_navs d-flex justify-content-between">
         <div class="btn-group">
