@@ -50,7 +50,7 @@
       <%= render 'groups/send_bar', group: @group %>
     <% else %>
       <%= form_with(model: @group.subscribers.build, local: true) do |f| %>
-        <%= hidden_field_tag :group_token, @group.token %>
+        <%= hidden_field_tag :group_token, @group.token, id: :group_token_bottom %>
         <%= f.submit '参加する', class: 'btn btn-primary btn-lg btn-block' %>
       <% end %>
     <% end %>
