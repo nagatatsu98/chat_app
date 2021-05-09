@@ -4,7 +4,7 @@ class ToppagesController < ApplicationController
     if search_key
       @groups = Group.where('name like ?', "%#{search_key}%")
     else
-      @groups = Group.all
+      @groups = Group.where(private: false)
     end
   end
 end

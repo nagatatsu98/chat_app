@@ -14,9 +14,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @access = params[:access]
     if @access == 'private'
-      @groups = @user.groups.where(private: true)
+      @groups = @user.subscribed_groups.where(private: true)
     else
-      @groups = @user.groups.where(private: false)
+      @groups = @user.subscribed_groups.where(private: false)
       @access = 'public'
     end
   end
